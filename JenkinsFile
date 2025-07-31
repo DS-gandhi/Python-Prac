@@ -2,22 +2,22 @@ pipeline {
     agent any
 
     stages {
-        stage("Clone Code") {
+        stage('Clone Code') {
             steps {
-                echo "Code will cloned via webhook"
+                echo 'Code will cloned via webhook'
             }
         }
 
-        stage("Install Dependencies") {
+        stage('Install Dependencies') {
             steps {
-                sh "python -m venv venv"
-                sh "venv/bin/pip install -r requirements.txt"
+                bat 'python -m venv venv'
+                bat 'venv\\Scripts\\activate && pip install -r requirements.txt'
             }
         }
 
-        stage("Run App") {
+        stage('Run App') {
             steps {
-                sh "venv/bin/python app.py &"
+                bat 'venv\\Scripts\\activate && python app.py'
             }
         }
     }
